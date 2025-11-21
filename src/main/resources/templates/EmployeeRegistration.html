@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Employee Registration Page</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(120deg, #ff758c, #ff7eb3, #6a11cb, #2575fc);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+        padding: 0;
+        margin: 0;
+        color: #333;
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 40px;
+        color: #fff;
+        margin-top: 40px;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .container {
+        width: 45%;
+        margin: 40px auto;
+        padding: 30px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+        border-radius: 20px;
+        box-shadow: 0px 10px 25px rgba(0,0,0,0.4);
+        backdrop-filter: blur(10px);
+        animation: floatForm 2s ease-in-out;
+    }
+
+    @keyframes floatForm {
+        from { transform: translateY(40px); opacity: 0; }
+        to   { transform: translateY(0); opacity: 1; }
+    }
+
+    label {
+        font-weight: 600;
+        font-size: 17px;
+        color: #6a11cb;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        font-size: 15px;
+        transition: all 0.4s ease;
+        outline: none;
+    }
+
+    input:focus, textarea:focus {
+        border-color: #ff758c;
+        box-shadow: 0 0 12px rgba(255,117,140,0.7);
+        background: #fff1f5;
+        transform: scale(1.02);
+    }
+
+    .error-msg {
+        color: red;
+        margin: 5px 0;
+        font-size: 14px;
+        font-style: italic;
+    }
+
+    button {
+        padding: 12px 25px;
+        margin-top: 20px;
+        margin-right: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        color: white;
+        transition: 0.3s ease-in-out;
+    }
+
+    button[type="submit"] {
+        background: linear-gradient(45deg, #ff758c, #ff7eb3);
+        box-shadow: 0 5px 15px rgba(255,117,140,0.5);
+    }
+
+    button[type="submit"]:hover {
+        transform: scale(1.07);
+        box-shadow: 0 8px 20px rgba(255,117,140,0.7);
+    }
+
+    button[type="reset"] {
+        background: linear-gradient(45deg, #2575fc, #6a11cb);
+        box-shadow: 0 5px 15px rgba(37,117,252,0.5);
+    }
+
+    button[type="reset"]:hover {
+        transform: scale(1.07);
+        box-shadow: 0 8px 20px rgba(37,117,252,0.7);
+    }
+</style>
+</head>
+
+<body>
+
+    <h1>Employee Registration Page</h1>
+
+    <div class="container">
+        <form action="/registration" th:object="${employeeDetails}">
+
+            <p class="error-msg" th:text="${invalidmsg!=null ? invalidmsg[empname] : ' '}"></p>
+            <label>Name:</label>
+            <input type="text" placeholder="Enter your name" th:field="*{empname}">
+
+            <p class="error-msg" th:text="${invalidmsg!=null ? invalidmsg[emailid] : ' '}"></p>
+            <label>Email Id:</label>
+            <input type="email" placeholder="Enter your email" th:field="*{emailid}">
+
+            <p class="error-msg" th:text="${invalidmsg!=null ? invalidmsg[empsalary] : ' '}"></p>
+            <label>Salary:</label>
+            <input type="number" placeholder="Enter your salary" th:field="*{empsalary}">
+
+            <p class="error-msg" th:text="${invalidmsg!=null ? invalidmsg[mobilenumber] : ' '}"></p>
+            <label>Mobile Number:</label>
+            <input type="text" placeholder="Enter your mobile number" th:field="*{mobilenumber}">
+
+            <p class="error-msg" th:text="${invalidmsg!=null ? invalidmsg[deptno] : ' '}"></p>
+            <label>Dept No:</label>
+            <input type="text" placeholder="Enter department number" th:field="*{deptno}">
+
+            <p class="error-msg" th:text="${invalidmsg!=null ? invalidmsg[gender] : ' '}"></p>
+            <label>Gender:</label>
+            <input type="text" placeholder="Enter gender" th:field="*{gender}">
+
+            <p class="error-msg" th:text="${invalidmsg!=null ? invalidmsg[address] : ' '}"></p>
+            <label>Address:</label>
+            <textarea placeholder="Enter your address" th:field="*{address}"></textarea>
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+
+        </form>
+    </div>
+
+</body>
+</html>
